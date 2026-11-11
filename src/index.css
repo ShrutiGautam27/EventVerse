@@ -36,7 +36,18 @@
     box-sizing: border-box;
 }
 
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
 
+.page {
+    display: none;
+    width: 100%;
+}
+
+.page.active {
+    display: block;
+}
 html {
     scroll-behavior: smooth;
 }
@@ -348,21 +359,7 @@ a {
 }
 
 
-/* =====================================================
-   PAGE SYSTEM
-===================================================== */
 
-.page {
-
-    display: none;
-
-    min-height: 70vh;
-}
-
-
-.page.active {
-    display: block;
-}
 
 
 /* =====================================================
@@ -776,6 +773,12 @@ a {
     height: 100%;
 
     object-fit: cover;
+
+    opacity: 1;
+
+    transition:
+        opacity 0.35s ease-in-out;
+
 }
 
 
@@ -938,6 +941,10 @@ a {
     top: 100px;
 
     right: 0;
+
+    animation:
+        floatCardOne 3s ease-in-out infinite;
+
 }
 
 
@@ -946,8 +953,50 @@ a {
     bottom: 100px;
 
     left: 0;
+
+    animation:
+        floatCardTwo 3.5s ease-in-out infinite;
+
 }
 
+@keyframes floatCardOne {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px);
+
+    }
+
+}
+
+
+@keyframes floatCardTwo {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(12px);
+
+    }
+
+}
 
 /* =====================================================
    SECTIONS
@@ -1014,7 +1063,15 @@ a {
 /* =====================================================
    CATEGORIES
 ===================================================== */
+.categories {
+    padding: 70px 0 110px;
+    margin-bottom: 70px;
+    position: relative;
+}
 
+.categories + .section {
+    padding-top: 90px;
+}
 .category-grid {
 
     display: grid;
@@ -1022,22 +1079,16 @@ a {
     grid-template-columns:
         repeat(4, 1fr);
 
-    gap: 15px;
+    gap: 16px;
+
 }
 
 
 .category-card {
 
-    border:
-        1px solid var(--border);
+    min-height: 185px;
 
-    background: var(--surface);
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    text-align: left;
+    padding: 30px;
 
     display: flex;
 
@@ -1045,75 +1096,136 @@ a {
 
     align-items: flex-start;
 
-    transition:
-        transform 0.2s,
-        border-color 0.2s;
+    justify-content: flex-start;
+
+    gap: 25px;
+
+    text-align: left;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 22px;
+
+    background: var(--surface);
+
+    cursor: pointer;
 
     color: var(--text);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+
 }
 
 
 .category-card:hover {
 
-    transform: translateY(-5px);
+    transform:
+        translateY(-5px);
 
-    border-color: var(--primary);
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 12px 30px
+        rgba(108, 76, 255, 0.12);
+
 }
 
 
 .category-icon {
 
-    width: 50px;
+    width: 60px;
 
-    height: 50px;
+    height: 60px;
 
-    border-radius: 15px;
+    display: flex;
 
-    display: grid;
+    align-items: center;
 
-    place-items: center;
+    justify-content: center;
 
-    margin-bottom: 18px;
+    border-radius: 18px;
 
-    font-size: 1.2rem;
+    font-size: 1.35rem;
+
 }
 
 
 .category-icon.music {
 
-    background:
-        rgba(108,76,255,0.12);
+    background: rgba(108, 76, 255, 0.15);
 
-    color: var(--primary);
+    color: #6c4cff;
+
 }
 
 
-.category-icon.cultural {
+.category-icon.comedy {
 
-    background:
-        rgba(255,79,139,0.12);
+    background: rgba(255, 65, 135, 0.15);
 
-    color: var(--secondary);
+    color: #ff4187;
+
 }
 
 
 .category-icon.sports {
 
-    background:
-        rgba(255,189,89,0.15);
+    background: rgba(255, 170, 0, 0.15);
 
-    color: #dc9000;
+    color: #ffad00;
+
 }
 
 
-.category-icon.education {
+.category-icon.food {
 
-    background:
-        rgba(24,199,184,0.12);
+    background: rgba(0, 190, 190, 0.15);
 
-    color: var(--accent);
+    color: #00bebe;
+
 }
 
+
+.category-icon.technology {
+
+    background: rgba(70, 130, 255, 0.15);
+
+    color: #4682ff;
+
+}
+
+
+.category-icon.college {
+
+    background: rgba(108, 76, 255, 0.15);
+
+    color: #6c4cff;
+
+}
+
+
+.category-icon.workshops {
+
+    background: rgba(255, 200, 50, 0.15);
+
+    color: #e7b500;
+
+}
+
+
+.category-icon.gaming {
+
+    background: rgba(255, 80, 160, 0.15);
+
+    color: #ff509f;
+
+}
 
 .category-card strong {
 
@@ -1127,7 +1239,24 @@ a {
 
     margin-top: 4px;
 }
+.category-card h3 {
 
+    margin: 0 0 6px;
+
+    font-size: 1.05rem;
+
+}
+
+
+.category-card p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 0.8rem;
+
+}
 
 /* =====================================================
    EVENT CARDS
@@ -3269,6 +3398,181 @@ a {
 }
 
 
+
+/* =====================================================
+   EVE AI - EVENT RECOMMENDATION CARDS
+===================================================== */
+
+.eve-event-response {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+.eve-event-card {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    box-sizing: border-box;
+
+    padding: 10px;
+
+    border:
+        1px solid
+        rgba(108, 76, 255, 0.45);
+
+    border-radius: 16px;
+
+    background: var(--surface);
+
+    overflow: hidden;
+
+}
+
+
+/* IMPORTANT:
+   This prevents the event image
+   from becoming huge.
+*/
+
+.eve-event-card .eve-event-image {
+
+    width: 96px !important;
+
+    height: 96px !important;
+
+    min-width: 96px !important;
+
+    max-width: 96px !important;
+
+    min-height: 96px !important;
+
+    max-height: 96px !important;
+
+    flex: 0 0 96px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+}
+
+
+/* Event information */
+
+.eve-event-info {
+
+    min-width: 0;
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.eve-event-info h4 {
+
+    margin: 0 0 3px;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 0.9rem;
+
+    line-height: 1.2;
+
+}
+
+
+.eve-event-info p {
+
+    margin: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: var(--muted);
+
+    font-size: 0.68rem;
+
+    line-height: 1.4;
+
+}
+
+
+.eve-event-info p i {
+
+    width: 12px;
+
+    color: var(--primary);
+
+}
+
+
+.eve-event-price {
+
+    color: var(--secondary) !important;
+
+    font-weight: 700;
+
+}
+
+
+.eve-view-event {
+
+    width: fit-content;
+
+    border: none;
+
+    padding: 7px 12px;
+
+    margin-top: 4px;
+
+    border-radius: 9px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #845eff
+        );
+
+    font-size: 0.68rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
 /* =====================================================
    TOAST
 ===================================================== */
@@ -3480,7 +3784,34 @@ footer {
     font-size: 0.7rem;
 }
 
+@media (max-width: 900px) {
 
+    .category-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .category-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .category-card {
+
+        min-height: 150px;
+
+    }
+
+}
 /* =====================================================
    PRINT
 ===================================================== */
@@ -3758,4 +4089,1761 @@ select:focus-visible {
         rgba(108,76,255,0.35);
 
     outline-offset: 2px;
+}
+
+.profile-btn {
+
+    min-width: 110px;
+
+    justify-content: center;
+
+    gap: 8px;
+
+}
+
+.profile-btn i {
+
+    font-size: 0.95rem;
+
+}
+
+
+/* =====================================================
+   EVENT WEATHER
+===================================================== */
+
+.event-weather {
+
+    margin-top: 10px;
+
+    padding: 8px 10px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(108, 76, 255, 0.06);
+
+    border:
+        1px solid
+        var(--border);
+
+}
+
+
+.weather-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.weather-icon {
+
+    font-size: 1.25rem;
+
+}
+
+
+.weather-details {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+    min-width: 0;
+
+}
+
+
+.weather-details strong {
+
+    font-size: 0.75rem;
+
+}
+
+
+.weather-details span {
+
+    color: var(--muted);
+
+    font-size: 0.65rem;
+
+}
+
+
+.weather-rain {
+
+    margin-left: auto;
+
+    color: var(--muted);
+
+    font-size: 0.62rem;
+
+    white-space: nowrap;
+
+}
+
+
+.weather-unavailable {
+
+    color: var(--muted);
+
+    font-size: 0.65rem;
+
+}
+
+
+/* =========================================================
+   ABOUT EVENTVERSE
+========================================================= */
+
+.about-hero {
+
+    min-height: 560px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 100px 7%;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(108, 76, 255, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 210, 255, 0.12),
+            transparent 35%
+        ),
+        var(--bg);
+}
+
+
+.about-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border: 1px solid
+        rgba(255,255,255,0.08);
+
+    border-radius: 50%;
+
+    top: -250px;
+    right: -100px;
+}
+
+
+.about-hero-content {
+
+    max-width: 850px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.about-eyebrow,
+.about-heading > span,
+.about-location-content > span,
+.promise-inner > span {
+
+    display: inline-block;
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: var(--primary);
+
+    margin-bottom: 18px;
+}
+
+
+.about-hero h1 {
+
+    font-size: clamp(
+        3rem,
+        7vw,
+        6rem
+    );
+
+    line-height: 0.95;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 28px;
+
+    color: var(--text);
+}
+
+
+.about-hero h1 span {
+
+    color: var(--primary);
+}
+
+
+.about-hero p {
+
+    max-width: 680px;
+
+    margin: 0 auto 32px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+}
+
+
+.about-primary-btn {
+
+    border: none;
+
+    padding: 14px 24px;
+
+    border-radius: 12px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    transition: 0.25s ease;
+}
+
+
+.about-primary-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(108, 76, 255, 0.35);
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.about-stats {
+
+    max-width: 1100px;
+
+    margin: -55px auto 80px;
+
+    padding: 0 24px;
+
+    position: relative;
+
+    z-index: 5;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+
+.about-stat-card {
+
+    padding: 28px 20px;
+
+    border-radius: 18px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    backdrop-filter: blur(15px);
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    transition: 0.25s ease;
+}
+
+
+.about-stat-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(108, 76, 255, 0.45);
+}
+
+
+.about-stat-card i {
+
+    color: var(--primary);
+
+    font-size: 1.3rem;
+
+    margin-bottom: 5px;
+}
+
+
+.about-stat-card strong {
+
+    font-size: 1.7rem;
+
+    color: var(--text);
+}
+
+
+.about-stat-card span {
+
+    color: var(--muted);
+
+    font-size: 0.78rem;
+}
+
+
+/* =========================
+   GENERAL ABOUT SECTION
+========================= */
+
+.about-section {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 90px 6%;
+}
+
+
+.about-heading {
+
+    max-width: 700px;
+
+    margin-bottom: 45px;
+}
+
+
+.about-heading h2 {
+
+    font-size: clamp(
+        2rem,
+        4vw,
+        3.5rem
+    );
+
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 18px;
+}
+
+
+.about-heading p {
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    max-width: 650px;
+}
+
+
+.center-heading {
+
+    text-align: center;
+
+    margin-left: auto;
+
+    margin-right: auto;
+}
+
+
+/* =========================
+   FEATURE CARDS
+========================= */
+
+.about-feature-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.about-feature-card {
+
+    padding: 28px;
+
+    min-height: 220px;
+
+    border-radius: 20px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,0.025);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.about-feature-card:hover {
+
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(108, 76, 255, 0.5);
+
+    background:
+        rgba(108, 76, 255, 0.06);
+}
+
+
+.about-feature-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(108, 76, 255, 0.12);
+
+    color: var(--primary);
+
+    margin-bottom: 22px;
+
+    font-size: 1.1rem;
+}
+
+
+.about-feature-card h3 {
+
+    margin-bottom: 10px;
+
+    font-size: 1.05rem;
+}
+
+
+.about-feature-card p {
+
+    color: var(--muted);
+
+    font-size: 0.84rem;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.about-how-section {
+
+    max-width: 1300px;
+
+    background:
+        rgba(108, 76, 255, 0.025);
+
+    border-radius: 30px;
+
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+}
+
+
+.about-steps {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+.about-step {
+
+    flex: 1;
+
+    text-align: center;
+
+    padding: 25px 15px;
+}
+
+
+.step-number {
+
+    color: var(--primary);
+
+    font-size: 0.7rem;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+
+.about-step > i {
+
+    font-size: 1.8rem;
+
+    color: var(--text);
+
+    margin-bottom: 15px;
+}
+
+
+.about-step h3 {
+
+    margin-bottom: 8px;
+}
+
+
+.about-step p {
+
+    color: var(--muted);
+
+    font-size: 0.8rem;
+
+    line-height: 1.6;
+}
+
+
+.step-line {
+
+    width: 60px;
+
+    height: 1px;
+
+    background:
+        var(--border);
+}
+
+
+/* =========================
+   INTERESTS
+========================= */
+
+.interest-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 14px;
+}
+
+
+.interest-card {
+
+    min-height: 130px;
+
+    border-radius: 18px;
+
+    border:
+        1px solid var(--border);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    transition: 0.25s ease;
+}
+
+
+.interest-card i {
+
+    font-size: 1.5rem;
+
+    color: var(--primary);
+}
+
+
+.interest-card span {
+
+    font-size: 0.78rem;
+
+    font-weight: 700;
+}
+
+
+.interest-card:hover {
+
+    transform: translateY(-5px);
+
+    background:
+        rgba(108, 76, 255, 0.08);
+
+    border-color:
+        rgba(108, 76, 255, 0.4);
+}
+
+
+/* =========================
+   LOCATIONS
+========================= */
+
+.about-location-section {
+
+    max-width: 1200px;
+
+    margin: 70px auto;
+
+    padding: 80px 7%;
+
+    border-radius: 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 50px;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108, 76, 255, 0.12),
+            rgba(0, 210, 255, 0.04)
+        );
+
+    border:
+        1px solid var(--border);
+
+    overflow: hidden;
+}
+
+
+.about-location-content h2 {
+
+    font-size: clamp(
+        2.2rem,
+        5vw,
+        4rem
+    );
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 20px;
+}
+
+
+.about-location-content p {
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    max-width: 480px;
+
+    margin-bottom: 28px;
+}
+
+
+.location-pills {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.location-pills button {
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color: var(--text);
+
+    padding: 10px 14px;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-size: 0.75rem;
+
+    transition: 0.2s ease;
+}
+
+
+.location-pills button:hover {
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   LOCATION VISUAL
+========================= */
+
+.location-visual {
+
+    min-height: 360px;
+
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+}
+
+
+.location-center {
+
+    width: 150px;
+
+    height: 150px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        rgba(108, 76, 255, 0.16);
+
+    border:
+        1px solid
+        rgba(108, 76, 255, 0.4);
+
+    box-shadow:
+        0 0 60px
+        rgba(108, 76, 255, 0.15);
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+.location-center i {
+
+    color: var(--primary);
+
+    font-size: 1.5rem;
+
+    margin-bottom: 8px;
+}
+
+
+.location-center strong {
+
+    font-size: 0.9rem;
+}
+
+
+.location-center span {
+
+    color: var(--muted);
+
+    font-size: 0.55rem;
+
+    margin-top: 5px;
+
+    max-width: 110px;
+}
+
+
+.location-orbit {
+
+    position: absolute;
+
+    border:
+        1px dashed
+        rgba(108, 76, 255, 0.25);
+
+    border-radius: 50%;
+
+    animation:
+        aboutOrbit 12s linear infinite;
+}
+
+
+.orbit-one {
+
+    width: 250px;
+    height: 250px;
+}
+
+
+.orbit-two {
+
+    width: 330px;
+    height: 330px;
+
+    animation-duration: 18s;
+
+    animation-direction: reverse;
+}
+
+
+.location-dot {
+
+    position: absolute;
+
+    padding: 7px 10px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(20,20,30,0.9);
+
+    border:
+        1px solid var(--border);
+
+    font-size: 0.62rem;
+
+    z-index: 4;
+}
+
+
+.dot-chandigarh {
+
+    top: 35px;
+    right: 40px;
+}
+
+
+.dot-panchkula {
+
+    top: 115px;
+    left: 20px;
+}
+
+
+.dot-mohali {
+
+    bottom: 45px;
+    right: 65px;
+}
+
+
+@keyframes aboutOrbit {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================
+   PROMISE
+========================= */
+
+.about-promise {
+
+    margin-top: 80px;
+
+    padding: 110px 7%;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(108, 76, 255, 0.15),
+            transparent 55%
+        );
+
+    border-top:
+        1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.promise-inner {
+
+    max-width: 800px;
+
+    margin: auto;
+}
+
+
+.promise-inner h2 {
+
+    font-size: clamp(
+        2.5rem,
+        6vw,
+        5rem
+    );
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 25px;
+}
+
+
+.promise-inner p {
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    margin-bottom: 18px;
+}
+
+
+.promise-inner strong {
+
+    display: block;
+
+    margin-bottom: 30px;
+
+    color: var(--text);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .about-stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .about-feature-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .about-steps {
+
+        flex-direction: column;
+
+    }
+
+
+    .step-line {
+
+        width: 1px;
+
+        height: 35px;
+
+    }
+
+
+    .interest-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+
+    .about-location-section {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .about-hero {
+
+        min-height: 500px;
+
+        padding:
+            80px 20px;
+
+    }
+
+
+    .about-hero h1 {
+
+        letter-spacing: -2px;
+
+    }
+
+
+    .about-stats {
+
+        grid-template-columns: 1fr 1fr;
+
+        margin-top: -35px;
+
+    }
+
+
+    .about-feature-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .interest-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .about-section {
+
+        padding:
+            65px 20px;
+
+    }
+
+
+    .about-location-section {
+
+        margin:
+            50px 15px;
+
+        padding:
+            55px 25px;
+
+    }
+
+
+    .location-visual {
+
+        min-height: 300px;
+
+    }
+
+
+    .orbit-one {
+
+        width: 210px;
+        height: 210px;
+
+    }
+
+
+    .orbit-two {
+
+        width: 270px;
+        height: 270px;
+
+    }
+
+}
+
+
+
+/* =========================================
+   EVENT CALENDAR
+   ========================================= */
+
+#calendarPage {
+    min-height: calc(100vh - 90px);
+    padding: 70px 5% 90px;
+    background: var(--bg-primary, #0d0c18);
+    color: var(--text-primary, #f7f5ff);
+}
+
+
+/* ---------- Header ---------- */
+
+.calendar-header {
+    max-width: 1200px;
+    margin: 0 auto 35px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.calendar-header > div:first-child {
+    flex: 1;
+}
+
+.calendar-header .section-eyebrow {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #7047ff;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.calendar-header h1 {
+    margin: 0 0 10px;
+
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1.05;
+    font-weight: 800;
+
+    color: #f8f7ff;
+}
+
+.calendar-header p {
+    margin: 0;
+
+    color: #a8a4bc;
+
+    font-size: 16px;
+}
+
+
+/* ---------- Calendar Controls ---------- */
+
+.calendar-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.calendar-controls button {
+    min-width: 46px;
+    height: 46px;
+
+    padding: 0 16px;
+
+    border: 1px solid #302d43;
+    border-radius: 12px;
+
+    background: #171624;
+    color: #f5f3ff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.calendar-controls button:hover {
+    background: #211e35;
+    border-color: #7047ff;
+
+    transform: translateY(-2px);
+}
+
+.calendar-controls button:first-child,
+.calendar-controls button:last-child {
+    width: 46px;
+    padding: 0;
+}
+
+
+/* ---------- Main Calendar ---------- */
+
+.calendar-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    padding: 28px;
+
+    border: 1px solid #2c2940;
+    border-radius: 22px;
+
+    background: #151421;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ---------- Month Title ---------- */
+
+.calendar-month-title {
+    margin-bottom: 25px;
+
+    text-align: center;
+
+    color: #f8f7ff;
+
+    font-size: 25px;
+    font-weight: 800;
+}
+
+
+/* ---------- Weekdays ---------- */
+
+.calendar-weekdays {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 8px;
+}
+
+.calendar-weekdays span {
+    padding: 12px 5px;
+
+    text-align: center;
+
+    color: #8f8aa8;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+/* ---------- Calendar Grid ---------- */
+
+.calendar-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+
+/* ---------- Individual Day ---------- */
+
+.calendar-day {
+    position: relative;
+
+    min-height: 105px;
+
+    padding: 12px;
+
+    border: 1px solid #2d2a40;
+    border-radius: 14px;
+
+    background: #100f1a;
+
+    color: #f5f3ff;
+
+    font-family: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.calendar-day:hover {
+    background: #1c1930;
+
+    border-color: #6240df;
+
+    transform: translateY(-2px);
+}
+
+
+/* Empty cells */
+
+.calendar-day.empty {
+    min-height: 105px;
+
+    border-color: transparent;
+
+    background: transparent;
+
+    cursor: default;
+}
+
+.calendar-day.empty:hover {
+    transform: none;
+
+    border-color: transparent;
+
+    background: transparent;
+}
+
+
+/* Date number */
+
+.calendar-number {
+    display: block;
+
+    width: 32px;
+    height: 32px;
+
+    line-height: 32px;
+
+    text-align: center;
+
+    border-radius: 50%;
+
+    color: #d8d4e7;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* ---------- Event Day ---------- */
+
+.calendar-day.has-events {
+    border-color: rgba(112, 71, 255, 0.55);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(112, 71, 255, 0.12),
+            rgba(226, 63, 154, 0.05)
+        );
+}
+
+.calendar-day.has-events .calendar-number {
+    background: #7047ff;
+
+    color: white;
+
+    box-shadow:
+        0 5px 18px rgba(112, 71, 255, 0.35);
+}
+
+
+/* Event count */
+
+.calendar-event-count {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-top: 14px;
+
+    padding: 5px 8px;
+
+    border-radius: 8px;
+
+    background: rgba(112, 71, 255, 0.14);
+
+    color: #a98dff;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ---------- Events Selected Below Calendar ---------- */
+
+.calendar-events {
+    max-width: 1200px;
+
+    margin: 35px auto 0;
+
+    padding: 30px;
+
+    border: 1px solid #2c2940;
+    border-radius: 22px;
+
+    background: #151421;
+}
+
+.calendar-events-header span {
+    color: #7047ff;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.calendar-events-header h2 {
+    margin: 7px 0 25px;
+
+    color: #f7f5ff;
+
+    font-size: 28px;
+}
+
+
+/* ---------- Event List ---------- */
+
+.calendar-event-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* ---------- Event Card ---------- */
+
+.calendar-event-card {
+    display: flex;
+
+    gap: 16px;
+
+    padding: 14px;
+
+    border: 1px solid #302c45;
+    border-radius: 16px;
+
+    background: #100f1a;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.calendar-event-card:hover {
+    border-color: #7047ff;
+
+    background: #18152a;
+
+    transform: translateY(-3px);
+}
+
+.calendar-event-card img {
+    width: 130px;
+    height: 100px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+}
+
+.calendar-event-card > div {
+    min-width: 0;
+
+    padding: 4px 0;
+}
+
+.calendar-event-card > div > span {
+    color: #8e6cff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.calendar-event-card h3 {
+    margin: 6px 0 10px;
+
+    color: #f8f7ff;
+
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.calendar-event-card p {
+    margin: 5px 0;
+
+    color: #9f9ab4;
+
+    font-size: 13px;
+}
+
+.calendar-event-card p i {
+    width: 16px;
+
+    margin-right: 4px;
+
+    color: #7047ff;
+}
+
+
+/* ---------- Empty State ---------- */
+
+.calendar-empty {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    border: 1px dashed #37334d;
+    border-radius: 16px;
+
+    background: #100f1a;
+}
+
+.calendar-empty i {
+    margin-bottom: 15px;
+
+    color: #7047ff;
+
+    font-size: 30px;
+}
+
+.calendar-empty h2 {
+    margin: 0 0 8px;
+
+    color: #f7f5ff;
+
+    font-size: 22px;
+}
+
+.calendar-empty p {
+    margin: 0;
+
+    color: #8f8aa5;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    #calendarPage {
+        padding: 50px 20px 70px;
+    }
+
+    .calendar-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .calendar-wrapper {
+        padding: 18px;
+    }
+
+    .calendar-day {
+        min-height: 80px;
+
+        padding: 8px;
+    }
+
+    .calendar-day.empty {
+        min-height: 80px;
+    }
+
+    .calendar-event-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .calendar-header h1 {
+        font-size: 38px;
+    }
+
+    .calendar-wrapper {
+        padding: 10px;
+
+        overflow-x: auto;
+    }
+
+    .calendar-month-title {
+        font-size: 21px;
+    }
+
+    .calendar-grid,
+    .calendar-weekdays {
+        min-width: 620px;
+    }
+
+    .calendar-day {
+        min-height: 80px;
+    }
+
+    .calendar-events {
+        padding: 20px;
+    }
+
+    .calendar-event-card {
+        flex-direction: column;
+    }
+
+    .calendar-event-card img {
+        width: 100%;
+        height: 170px;
+    }
+
+}
+
+.calendar-day.has-events::after {
+    content: "";
+
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #8b5cf6;
+
+    transform: translateX(-50%);
+
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+}
+
+
+/* =========================================
+   ABOUT FEATURE LINK
+========================================= */
+
+.about-feature-link {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 18px;
+    padding: 9px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    color: var(--accent);
+    background: var(--accent-light);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.about-feature-link i {
+    transition: transform 0.2s ease;
+}
+
+.about-feature-link:hover {
+    color: white;
+    background: var(--accent);
+
+    transform: translateY(-2px);
+}
+
+.about-feature-link:hover i {
+    transform: translateX(4px);
 }
